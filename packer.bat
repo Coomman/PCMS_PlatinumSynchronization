@@ -1,1 +1,1 @@
-Packer\bin\Debug\netcoreapp3.1\Packer.exe CodeChallenge.Core Lab5 MultiMapChecker.cs
+Packer\bin\Debug\netcoreapp3.1\Packer.exe CodeChallenge.Core Lab6 QuackIDE.cs
