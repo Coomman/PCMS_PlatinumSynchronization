@@ -8,11 +8,11 @@ namespace Lab5
     {
         public class Node
         {
-            public TKey Key;
-            public TValue Value;
+            public TKey Key { get; }
+            public TValue Value { get; set; }
 
-            public Node Prev;
-            public Node Next;
+            public Node Prev { get; set; }
+            public Node Next { get; set; }
 
             public Node(TKey key, TValue value)
             {

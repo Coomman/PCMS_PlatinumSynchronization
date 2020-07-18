@@ -10,10 +10,10 @@ namespace Lab5
         {
             public class Node
             {
-                public TValue Value;
+                public TValue Value { get; set; }
 
-                public Node Prev;
-                public Node Next;
+                public Node Prev { get; set; }
+                public Node Next { get; set; }
 
                 public Node(TValue value)
                 {
