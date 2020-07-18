@@ -5,11 +5,11 @@ namespace Lab4
 {
     public class BracketsController : IFileTask
     {
-        public static bool CheckBracketSequence(string brackets)
+        public static bool CheckBracketSequence(string bracketSeq)
         {
-            var stack = new Stack<char>(brackets.Length);
+            var stack = new Stack<char>(bracketSeq.Length);
 
-            foreach (char ch in brackets)
+            foreach (char ch in bracketSeq)
             {
                 if (ch == '(' || ch == '[')
                     stack.Push(ch);

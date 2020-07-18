@@ -20,16 +20,16 @@ namespace CodeChallenge.Tests
             return true;
         }
 
-        public static void ShouldContain(this BST tree, params int[] values)
-        {
-            foreach (int num in values)
-                tree.Find(num).Value.Should().Be(num);
-        }
+        //public static void ShouldContain(this BST tree, params int[] values)
+        //{
+        //    foreach (int num in values)
+        //        tree.Find(num).Value.Should().Be(num);
+        //}
 
-        public static void ShouldNotContain(this BST tree, params int[] values)
-        {
-            foreach (int num in values)
-                tree.Find(num).Should().BeNull();
-        }
+        //public static void ShouldNotContain(this BST tree, params int[] values)
+        //{
+        //    foreach (int num in values)
+        //        tree.Find(num).Should().BeNull();
+        //}
     }
 }

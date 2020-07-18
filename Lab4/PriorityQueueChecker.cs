@@ -10,7 +10,6 @@ namespace Lab4
 
         private int Count
             => _heap.Count;
-
         private int Last
             => _heap.Count - 1;
 
@@ -26,7 +25,6 @@ namespace Lab4
                 index = parent;
             }
         }
-
         private void SiftDown(int index)
         {
             while (2 * index + 1 < _heap.Count)
@@ -51,8 +49,7 @@ namespace Lab4
             _heap.Add((value, pushNum));
             SiftUp(Last);
         }
-
-        public T Pop()
+        public T ExtractMin()
         {
             if (Count == 0)
                 throw new InvalidOperationException("Priority queue is empty");
@@ -96,7 +93,7 @@ namespace Lab4
                     case 'e':
                         try
                         {
-                            Console.WriteLine(heap.Pop());
+                            Console.WriteLine(heap.ExtractMin());
                         }
                         catch (InvalidOperationException)
                         {
