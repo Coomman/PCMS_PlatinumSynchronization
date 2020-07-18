@@ -1,34 +1,33 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Collections.Generic;
 using CodeChallenge.Core;
 
 namespace Lab5
 {
-    public class Set
+    public class Set<T>
     {
-        private readonly List<int>[] _hashTable = new List<int>[InitialSize];
+        private readonly List<T>[] _hashTable = new List<T>[InitialSize];
 
         private const int InitialSize = 24_036_583;
 
-        private static int MakeHash(int value)
-            => Math.Abs(value) % InitialSize;
+        private static int MakeHash(T key)
+            => EntryPoint.MakeHash(key, InitialSize);
 
-        public bool Contains(int value)
+        public bool Contains(T value)
         {
             return _hashTable[MakeHash(value)]?.Contains(value) ?? false;
         }
-        public void Add(int value)
+        public void Add(T value)
         {
             var hash = MakeHash(value);
 
             if(_hashTable[hash] is null)
-                _hashTable[hash] = new List<int>();
+                _hashTable[hash] = new List<T>();
 
             if (!_hashTable[hash].Contains(value))
                 _hashTable[hash].Add(value);
         }
-        public void Delete(int value)
+        public void Delete(T value)
         {
             _hashTable[MakeHash(value)]?.Remove(value);
         }
@@ -38,7 +37,7 @@ namespace Lab5
     {
         public void ExecuteFile(StreamReader sr, StreamWriter sw)
         {
-            var set = new Set();
+            var set = new Set<int>();
 
             while (!sr.EndOfStream)
             {

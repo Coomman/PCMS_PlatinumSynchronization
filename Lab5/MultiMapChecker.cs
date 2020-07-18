@@ -1,138 +1,127 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Collections.Generic;
 using CodeChallenge.Core;
 
 namespace Lab5
 {
-    public class LinkedSet
+    public class MultiMap<TKey, TValue>
     {
-        public class Node
+        public class LinkedSet
         {
-            public string Value;
-
-            public Node Prev;
-            public Node Next;
-
-            public Node(string value)
+            public class Node
             {
-                Value = value;
-            }
-        }
+                public TValue Value;
 
-        public string Key { get; }
-        public int Size { get; private set; }
+                public Node Prev;
+                public Node Next;
 
-        private readonly List<Node>[] _hashTable = new List<Node>[InitialSize];
-
-        private const int InitialSize = 521;
-
-        private Node _lastNode;
-
-        public LinkedSet(string key)
-        {
-            Key = key;
-        }
-
-        private static int MakeHash(string str)
-        {
-            int hash = str.Select((ch, i) => (i + 1) * ch).Sum();
-
-            return Math.Abs(hash % InitialSize);
-        }
-
-        public Node Get(string value)
-        {
-            return _hashTable[MakeHash(value)]?.Find(node => node.Value == value);
-        }
-        public void Add(string value)
-        {
-            var node = Get(value);
-
-            var hash = MakeHash(value);
-            if (node == null)
-            {
-                if(_hashTable[hash] is null)
-                    _hashTable[hash] = new List<Node>();
-
-                var newNode = new Node(value);
-                if (_lastNode != null)
+                public Node(TValue value)
                 {
-                    newNode.Prev = _lastNode;
-                    _lastNode.Next = newNode;
+                    Value = value;
+                }
+            }
+
+            private readonly List<Node>[] _hashTable = new List<Node>[InitialSize];
+
+            private const int InitialSize = 521;
+
+            private Node _lastNode;
+
+            public TKey Key { get; }
+            public int Size { get; private set; }
+
+            public LinkedSet(TKey key)
+            {
+                Key = key;
+            }
+
+            private static int MakeHash(TValue key)
+                => EntryPoint.MakeHash(key, InitialSize);
+
+            public Node Get(TValue value)
+            {
+                return _hashTable[MakeHash(value)]?.Find(node => node.Value.Equals(value));
+            }
+            public void Add(TValue value)
+            {
+                var node = Get(value);
+
+                if (node is null)
+                {
+                    var hash = MakeHash(value);
+
+                    if (_hashTable[hash] is null)
+                        _hashTable[hash] = new List<Node>();
+
+                    var newNode = new Node(value);
+                    if (_lastNode != null)
+                    {
+                        newNode.Prev = _lastNode;
+                        _lastNode.Next = newNode;
+                    }
+
+                    _lastNode = newNode;
+                    _hashTable[hash].Add(newNode);
+
+                    Size++;
+
+                    return;
                 }
 
-                _lastNode = newNode;
-                _hashTable[hash].Add(newNode);
-
-                Size++;
-
-                return;
+                node.Value = value;
             }
-
-            node.Value = value;
-        }
-        public void Delete(string value)
-        {
-            var node = Get(value);
-
-            if (node == null)
-                return;
-
-            if (node.Prev != null)
-                node.Prev.Next = node.Next;
-
-            if (node.Next != null)
-                node.Next.Prev = node.Prev;
-
-            if (node == _lastNode)
-                _lastNode = node.Prev;
-
-            Size--;
-
-            _hashTable[MakeHash(value)].Remove(node);
-        }
-
-        public void Show(StreamWriter sw)
-        {
-            sw.Write($"{Size} ");
-
-            var cur = _lastNode;
-            while (cur != null)
+            public void Delete(TValue value)
             {
-                sw.Write($"{cur.Value} ");
-                cur = cur.Prev;
+                var node = Get(value);
+
+                if (node is null)
+                    return;
+
+                if (node.Prev != null)
+                    node.Prev.Next = node.Next;
+
+                if (node.Next != null)
+                    node.Next.Prev = node.Prev;
+
+                if (node == _lastNode)
+                    _lastNode = node.Prev;
+
+                Size--;
+
+                _hashTable[MakeHash(value)].Remove(node);
             }
 
-            sw.WriteLine();
-        }
-    }
+            public void Show(StreamWriter sw)
+            {
+                sw.Write($"{Size} ");
 
-    public class MultiMap
-    {
+                for (var cur = _lastNode; cur != null; cur = cur.Prev)
+                    sw.Write($"{cur.Value} ");
+
+                sw.WriteLine();
+            }
+        }
+
         private readonly List<LinkedSet>[] _hashTable = new List<LinkedSet>[InitialSize];
 
         private const int InitialSize = 3_021_377;
 
-        private static int MakeHash(string key)
-        {
-            int hash = key.Select((ch, i) => (i + 1) * ch).Sum();
+        private static int MakeHash(TKey key)
+            => EntryPoint.MakeHash(key, InitialSize);
 
-            return Math.Abs(hash % InitialSize);
-        }
-
-        public LinkedSet Get(string key)
+        public LinkedSet Get(TKey key)
         {
-            return _hashTable[MakeHash(key)]?.Find(map => map.Key == key);
+            return _hashTable[MakeHash(key)]?.Find(map => map.Key.Equals(key));
         }
-        public void Add(string key, string value)
+        public void Add(TKey key, TValue value)
         {
             var set = Get(key);
-            if (set == null)
+
+            if (set is null)
             {
                 int hash = MakeHash(key);
-                if (_hashTable[hash] == null)
+
+                if (_hashTable[hash] is null)
                     _hashTable[hash] = new List<LinkedSet>();
 
                 var linkedSet = new LinkedSet(key);
@@ -146,12 +135,11 @@ namespace Lab5
             if (set.Get(value) is null)
                 set.Add(value);
         }
-        public void Delete(string key, string value)
+        public void Delete(TKey key, TValue value)
         {
-            var set = Get(key);
-            set?.Delete(value);
+            Get(key)?.Delete(value);
         }
-        public void DeleteAll(string key)
+        public void DeleteAll(TKey key)
         {
             var set = Get(key);
 
@@ -164,7 +152,7 @@ namespace Lab5
     {
         public void ExecuteFile(StreamReader sr, StreamWriter sw)
         {
-            var multiMap = new MultiMap();
+            var multiMap = new MultiMap<string, string>();
 
             while (!sr.EndOfStream)
             {

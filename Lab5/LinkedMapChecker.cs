@@ -1,22 +1,20 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Collections.Generic;
 using CodeChallenge.Core;
 
 namespace Lab5
 {
-    public class LinkedMap
+    public class LinkedMap<TKey, TValue>
     {
         public class Node
         {
-            public string Key;
-            public string Value;
+            public TKey Key;
+            public TValue Value;
 
             public Node Prev;
             public Node Next;
 
-            public Node(string key, string value)
+            public Node(TKey key, TValue value)
             {
                 Key = key;
                 Value = value;
@@ -29,25 +27,22 @@ namespace Lab5
 
         private Node _lastNode;
 
-        private static int MakeHash(string str)
-        {
-            int hash = str.Select((ch, i) => (i + 1) * ch).Sum();
+        private static int MakeHash(TKey key)
+            => EntryPoint.MakeHash(key, InitialSize);
 
-            return Math.Abs(hash % InitialSize);
-        }
-
-        public Node Get(string key)
+        public Node Get(TKey key)
         {
-            return _hashTable[MakeHash(key)]?.Find(node => node.Key == key);
+            return _hashTable[MakeHash(key)]?.Find(node => node.Key.Equals(key));
         }
-        public void Add(string key, string value)
+        public void Add(TKey key, TValue value)
         {
             var node = Get(key);
 
-            var hash = MakeHash(key);
-            if (node == null)
+            if (node is null)
             {
-                if(_hashTable[hash] is null)
+                var hash = MakeHash(key);
+
+                if (_hashTable[hash] is null)
                     _hashTable[hash] = new List<Node>();
 
                 var newNode = new Node(key, value);
@@ -65,11 +60,11 @@ namespace Lab5
 
             node.Value = value;
         }
-        public void Delete(string key)
+        public void Delete(TKey key)
         {
             var node = Get(key);
 
-            if (node == null)
+            if (node is null)
                 return;
 
             if (node.Prev != null)
@@ -83,9 +78,10 @@ namespace Lab5
 
             _hashTable[MakeHash(key)].Remove(node);
         }
-        public Node Prev(string key)
+
+        public Node Prev(TKey key)
             => Get(key)?.Prev;
-        public Node Next(string key)
+        public Node Next(TKey key)
             => Get(key)?.Next;
     }
 
@@ -93,7 +89,7 @@ namespace Lab5
     {
         public void ExecuteFile(StreamReader sr, StreamWriter sw)
         {
-            var linkedMap = new LinkedMap();
+            var linkedMap = new LinkedMap<string, string>();
 
             while (!sr.EndOfStream)
             {
