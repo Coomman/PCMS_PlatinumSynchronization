@@ -19,7 +19,7 @@ namespace CodeChallenge.Tests.Lab6
                 new TreeChecker.Node(6, -1, -1) 
             };
 
-            TreeChecker.Check(tree).Should().BeTrue();
+            TreeChecker.Check(tree, tree[0]).GetAwaiter().GetResult().Should().BeTrue();
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace CodeChallenge.Tests.Lab6
                 new TreeChecker.Node(4, -1, -1)
             };
 
-            TreeChecker.Check(tree).Should().BeFalse();
+            TreeChecker.Check(tree, tree[0]).GetAwaiter().GetResult().Should().BeFalse();
         }
     }
 }

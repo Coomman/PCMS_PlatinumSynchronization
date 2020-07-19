@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+
 using CodeChallenge.Core;
 
 namespace Lab6
@@ -60,11 +62,29 @@ namespace Lab6
                 if (cur.Node.HasLch)
                     stack.Push(new NodeBounds(tree[cur.Node.Lch], cur.LeftBound, cur.Node.Value));
 
-                if(cur.Node.HasRch)
+                if (cur.Node.HasRch)
                     stack.Push(new NodeBounds(tree[cur.Node.Rch], cur.Node.Value, cur.RightBound));
             }
 
             return true;
+        }
+
+        public static async Task<bool> Check(IList<Node> tree, Node cur, long leftBound = int.MinValue, long rightBound = int.MaxValue)
+        {
+            if (cur.Value <= leftBound || cur.Value >= rightBound)
+                return false;
+
+            var tasks = new List<Task<bool>>();
+
+            if (cur.HasLch)
+                tasks.Add(Task.Run(() => Check(tree, tree[cur.Lch], leftBound, cur.Value)));
+
+            if (cur.HasRch)
+                tasks.Add(Task.Run(() => Check(tree, tree[cur.Rch], cur.Value, rightBound)));
+
+            var results = await Task.WhenAll(tasks);
+
+            return !results.Any() || results.All(res => res is true);
         }
 
         public void ExecuteFile(StreamReader sr, StreamWriter sw)
@@ -86,7 +106,7 @@ namespace Lab6
                 tree[i] = new Node(int.Parse(query[0]),int.Parse(query[1]) - 1, int.Parse(query[2]) - 1);
             }
 
-            sw.Write(Check(tree) ? "YES" : "NO");
+            sw.Write(Check(tree, tree[0]).GetAwaiter().GetResult() ? "YES" : "NO");
         }
     }
 }
