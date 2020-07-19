@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab6;
+using System;
 using CodeChallenge.Core;
 using FluentAssertions;
 
@@ -20,16 +21,15 @@ namespace CodeChallenge.Tests
             return true;
         }
 
-        //public static void ShouldContain(this BST tree, params int[] values)
-        //{
-        //    foreach (int num in values)
-        //        tree.Find(num).Value.Should().Be(num);
-        //}
-
-        //public static void ShouldNotContain(this BST tree, params int[] values)
-        //{
-        //    foreach (int num in values)
-        //        tree.Find(num).Should().BeNull();
-        //}
+        public static void ShouldContain<T>(this BST<T> tree, params T[] values) where T: IComparable
+        {
+            foreach (var value in values)
+                tree.Find(value).Value.Should().NotBeNull();
+        }
+        public static void ShouldNotContain<T>(this BST<T> tree, params T[] values) where T: IComparable
+        {
+            foreach (var value in values)
+                tree.Find(value).Should().BeNull();
+        }
     }
 }

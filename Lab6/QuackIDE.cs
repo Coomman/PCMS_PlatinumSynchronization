@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using CodeChallenge.Core;
 
 namespace Lab6
 {
     public class QuackInterpreter
     {
+        private readonly TextWriter _writer;
+
         private readonly Queue<ushort> _queue = new Queue<ushort>();
         private readonly ushort[] _registers = new ushort[26];
 
@@ -17,7 +20,7 @@ namespace Lab6
 
         private int _nextCommand;
 
-        public QuackInterpreter()
+        public QuackInterpreter(TextWriter writer)
         {
             _zeroArgCmd = new Dictionary<char, Action>
             {
@@ -42,11 +45,13 @@ namespace Lab6
                 ['E'] = cmd => GoToIfEquals(ParseRegister(cmd[1]), ParseRegister(cmd[2]), cmd.Substring(3)),
                 ['G'] = cmd => GoToIfGreater(ParseRegister(cmd[1]), ParseRegister(cmd[2]), cmd.Substring(3))
             };
+
+            _writer = writer;
         }
 
-        public ushort Get()
+        private ushort Get()
             => _queue.Dequeue();
-        public void Put(ushort n)
+        private void Put(ushort n)
             => _queue.Enqueue(n);
 
         private void Add()
@@ -87,19 +92,19 @@ namespace Lab6
 
         private void PrintFirst()
         {
-            Console.WriteLine(Get());
+            _writer.WriteLine(Get());
         }
         private void PrintRegister(int regNum)
         {
-            Console.WriteLine(_registers[regNum]);
+            _writer.WriteLine(_registers[regNum]);
         }
         private void CharFirst()
         {
-            Console.Write((char) (Get() % 256));
+            _writer.Write((char) (Get() % 256));
         }
         private void CharRegister(int regNum)
         {
-            Console.Write((char) (_registers[regNum] % 256));
+            _writer.Write((char) (_registers[regNum] % 256));
         }
 
         private void SetLabel(string label)
@@ -173,7 +178,7 @@ namespace Lab6
     {
         public void ExecuteConsole()
         {
-            var quack = new QuackInterpreter();
+            var quack = new QuackInterpreter(Console.Out);
 
             while (true)
             {

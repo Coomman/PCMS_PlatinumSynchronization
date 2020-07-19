@@ -23,6 +23,7 @@
     <ProjectReference Include="..\Lab3\Lab3.csproj" />
     <ProjectReference Include="..\Lab4\Lab4.csproj" />
     <ProjectReference Include="..\Lab5\Lab5.csproj" />
+    <ProjectReference Include="..\Lab6\Lab6.csproj" />
   </ItemGroup>
 
 </Project>

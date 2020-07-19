@@ -45,7 +45,7 @@ namespace Lab6
             }
         }
 
-        public bool Check(IList<Node> tree)
+        public static bool Check(IList<Node> tree)
         {
             var stack = new Stack<NodeBounds>();
             stack.Push(new NodeBounds(tree[0], int.MinValue, int.MaxValue));
