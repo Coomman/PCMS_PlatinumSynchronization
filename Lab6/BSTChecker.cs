@@ -17,7 +17,7 @@ namespace Lab6
             public bool HasLch => Lch != null;
             public bool HasRch => Rch != null;
             public bool HasChild => Lch != null || Rch != null;
-            public bool HasBothChilds => Lch != null && Rch != null;
+            public bool HasBothChildren => Lch != null && Rch != null;
 
             public Node(T value, Node parent = null)
             {
@@ -114,7 +114,7 @@ namespace Lab6
             if (cur == null)
                 return;
 
-            if (cur.HasBothChilds)
+            if (cur.HasBothChildren)
             {
                 var prevNode = PrevNode(cur);
 

@@ -20,7 +20,8 @@ namespace Packer
             new List<(string, string)>
                 {
                     ("sourceCode", File.ReadAllText(Path.Combine(args[1], args[2]))),
-                    ("entryPoint", File.ReadAllText(Path.Combine(args[1], "EntryPoint.cs"))),
+                    ("extensions", File.ReadAllText(Path.Combine(args[1], "Extensions.cs"))),
+                    ("entryPoint", File.ReadAllText(Path.Combine(args[1], "EntryPoint.cs")))
                 }
                 .Concat(GetFiles(args[0]))
                 .ToList()
