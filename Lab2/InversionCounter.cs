@@ -1,5 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+
 using CodeChallenge.Core;
 
 namespace Lab2
@@ -8,7 +11,7 @@ namespace Lab2
     {
         public long InversionsCount { get; private set; }
 
-        private void Merge<T>(T[] arr, int p, int q, int r) where T : IComparable
+        private void Merge<T>(IList<T> arr, int p, int q, int r) where T : IComparable
         {
             int n1 = q - p + 1;
             int n2 = r - q;
@@ -39,7 +42,7 @@ namespace Lab2
             while (rit < n2)
                 arr[k++] = rightPart[rit++];
         }
-        public void MergeSort<T>(T[] arr, int left, int right) where T : IComparable
+        public void MergeSort<T>(IList<T> arr, int left, int right) where T : IComparable
         {
             if (left >= right)
                 return;
@@ -55,14 +58,10 @@ namespace Lab2
         public void ExecuteFile(StreamReader sr, StreamWriter sw)
         {
             var length = int.Parse(sr.ReadLine());
-            var arr = new int[length];
 
-            var query = sr.ReadLine().Split();
+            var arr = sr.ReadLine().TrimEnd().Split().Select(int.Parse).ToArray();
 
-            for (int i = 0; i < length; i++)
-                arr[i] = int.Parse(query[i]);
-
-            MergeSort(arr, 0, arr.Length - 1);
+            MergeSort(arr, 0, length - 1);
 
             sw.Write(InversionsCount);
         }

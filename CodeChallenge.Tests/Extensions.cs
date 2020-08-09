@@ -10,6 +10,11 @@ namespace CodeChallenge.Tests
 {
     internal static class Extensions
     {
+        public static int Compare<T>(this IList<T> arr, int first, int second) where T : IComparable
+        {
+            return arr[first].CompareTo(arr[second]);
+        }
+
         public static bool CheckSort<T>(this T[] arr) where T : IComparable
         {
             if (arr is null || arr.Length < 2)

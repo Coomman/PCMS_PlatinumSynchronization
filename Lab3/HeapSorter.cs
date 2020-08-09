@@ -1,6 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+
 using CodeChallenge.Core;
 
 namespace Lab3
@@ -139,12 +141,8 @@ namespace Lab3
     {
         public void ExecuteFile(StreamReader sr, StreamWriter sw)
         {
-            var length = int.Parse(sr.ReadLine());
-            var query = sr.ReadLine().Split();
-
-            var arr = new int[length];
-            for (int i = 0; i < length; i++)
-                arr[i] = int.Parse(query[i]);
+            sr.ReadLine();
+            var arr = sr.ReadLine().TrimEnd().Split().Select(int.Parse).ToArray();
 
             var heap = new Heap<int>(HeapType.Min);
             heap.Sort(arr);

@@ -36,7 +36,7 @@ namespace Lab5
             }
 
             private static int MakeHash(TValue key)
-                => EntryPoint.MakeHash(key, InitialSize);
+                => Extensions.MakeHash(key, InitialSize);
 
             public Node Get(TValue value)
             {
@@ -107,7 +107,7 @@ namespace Lab5
         private const int InitialSize = 3_021_377;
 
         private static int MakeHash(TKey key)
-            => EntryPoint.MakeHash(key, InitialSize);
+            => Extensions.MakeHash(key, InitialSize);
 
         public LinkedSet Get(TKey key)
         {

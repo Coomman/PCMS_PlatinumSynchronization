@@ -11,7 +11,7 @@ namespace Lab5
         private const int InitialSize = 24_036_583;
 
         private static int MakeHash(T key)
-            => EntryPoint.MakeHash(key, InitialSize);
+            => Extensions.MakeHash(key, InitialSize);
 
         public bool Contains(T value)
         {

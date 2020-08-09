@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using CodeChallenge.Core;
 
 namespace Lab1
@@ -8,11 +9,8 @@ namespace Lab1
         public void ExecuteFile(StreamReader sr, StreamWriter sw)
         {
             var length = int.Parse(sr.ReadLine());
-            var arr = new int[length];
 
-            var query = sr.ReadLine().Split();
-            for (int i = 0; i < length; i++)
-                arr[i] = int.Parse(query[i]);
+            var arr = sr.ReadLine().TrimEnd().Split().Select(int.Parse).ToArray();
 
             arr.SelectionSort(0, length - 1);
 

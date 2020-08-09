@@ -28,7 +28,7 @@ namespace Lab5
         private Node _lastNode;
 
         private static int MakeHash(TKey key)
-            => EntryPoint.MakeHash(key, InitialSize);
+            => Extensions.MakeHash(key, InitialSize);
 
         public Node Get(TKey key)
         {

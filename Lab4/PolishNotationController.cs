@@ -31,7 +31,7 @@ namespace Lab4
 
         public void ExecuteFile(StreamReader sr, StreamWriter sw)
         {
-            var query = sr.ReadLine().Trim().Split();
+            var query = sr.ReadLine().TrimEnd().Split();
 
             var pc = new PolishNotationController();
 

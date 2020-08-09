@@ -4,10 +4,13 @@ namespace CodeChallenge.Core
 {
     public static class TaskRunner
     {
-        public static void ExecuteFile(IFileTask task, string fileName)
+        public static void ExecuteFile(IFileTask task, string fileName = null)
         {
-            using (var sr = new StreamReader($"{fileName}.in"))
-            using (var sw = new StreamWriter($"{fileName}.out"))
+            string inputFileName = fileName is null ? "input.txt" : $"{fileName}.in";
+            string outputFileName = fileName is null ? "output.txt" : $"{fileName}.out";
+
+            using (var sr = new StreamReader(inputFileName))
+            using (var sw = new StreamWriter(outputFileName))
                 task.ExecuteFile(sr, sw);
         }
 

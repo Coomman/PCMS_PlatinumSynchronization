@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
 using CodeChallenge.Core;
@@ -9,9 +10,9 @@ namespace Lab3
     {
         private const double Error = 0.000001;
 
-        private static bool BuildGarland(double[] garland)
+        private static bool BuildGarland(IList<double> garland)
         {
-            for (int i = 2; i < garland.Length; i++)
+            for (int i = 2; i < garland.Count; i++)
             {
                 garland[i] = 2 * garland[i - 1] - garland[i - 2] + 2;
 

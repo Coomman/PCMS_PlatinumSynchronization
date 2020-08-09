@@ -44,7 +44,6 @@ namespace Lab1
             _width = int.Parse(query[1]);
 
             _field = new int[_height, _width];
-
             for (int i = 0; i < _height; i++)
             {
                 query = sr.ReadLine().Split();
