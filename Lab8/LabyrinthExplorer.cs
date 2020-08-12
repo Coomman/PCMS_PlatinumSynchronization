@@ -67,8 +67,8 @@ namespace Lab8
             _getNextCell = new Dictionary<Move, Func<Cell, Cell>>
             {
                 [Move.Left] = cur => _lab[cur.Y, cur.X - 1],
-                [Move.Up] = cur => _lab[cur.Y, cur.X + 1],
-                [Move.Right] = cur => _lab[cur.Y - 1, cur.X],
+                [Move.Up] = cur => _lab[cur.Y - 1, cur.X],
+                [Move.Right] = cur => _lab[cur.Y, cur.X + 1],
                 [Move.Down] = cur => _lab[cur.Y + 1, cur.X]
             };
             _getDir = new Dictionary<Move, char>()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Lab8
 {
@@ -46,6 +47,22 @@ namespace Lab8
                     return false;
 
             return true;
+        }
+    }
+
+    internal static class Extensions
+    {
+        public static IEnumerable<int> IndexesWhere<T>(this IEnumerable<T> source, Func<T, bool> predicate)
+        {
+            int index = 0;
+
+            foreach (var element in source)
+            {
+                if (predicate(element))
+                    yield return index;
+
+                index++;
+            }
         }
     }
 }
