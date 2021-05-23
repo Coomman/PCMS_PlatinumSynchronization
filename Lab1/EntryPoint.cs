@@ -6,11 +6,11 @@ namespace Lab1
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteFile(new AplusB(), "aplusb");
-            //TaskRunner.ExecuteFile(new TaskB(), "aplusbb");
-            //TaskRunner.ExecuteFile(new Turtle(), "turtle");
-            //TaskRunner.ExecuteFile(new SelectionSorter(), "smallsort");
-            TaskRunner.ExecuteFile(new Sortland(), "sortland");
+            //TaskRunner.ExecuteFileTask(new AplusB(), "aplusb");
+            //TaskRunner.ExecuteFileTask(new AplusBB(), "aplusbb");
+            //TaskRunner.ExecuteFileTask(new Turtle(), "turtle");
+            //TaskRunner.ExecuteFileTask(new SelectionSorter(), "smallsort");
+            TaskRunner.ExecuteFileTask(new Sortland(), "sortland");
         }
     }
 }

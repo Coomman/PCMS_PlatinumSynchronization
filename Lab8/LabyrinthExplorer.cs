@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -162,32 +161,32 @@ namespace Lab8
         }
     }
 
-    public class LabyrinthExplorer : IFileTask
+    public class LabyrinthExplorer : FileTask
     {
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            var query = sr.ReadLine().Split();
+            var numbers = ReadIntArray();
 
-            var height = int.Parse(query[0]);
+            var height = numbers[0];
 
             var field = new List<char[]>(height);
             for (int i = 0; i < height; i++)
-                field.Add(sr.ReadLine().TrimEnd().ToCharArray());
+                field.Add(ReadLine().TrimEnd().ToCharArray());
 
             var lab = new Labyrinth(field);
             lab.Bfs();
 
             if (lab.HasNoRoute)
             {
-                sw.WriteLine(-1);
+                WriteLine(-1);
                 return;
             }
 
             var route = lab.GetBestRoute();
 
-            sw.WriteLine(route.Length);
+            WriteLine(route.Length);
             foreach(var ch in route)
-                sw.Write(ch);
+                Write(ch);
         }
     }
 }

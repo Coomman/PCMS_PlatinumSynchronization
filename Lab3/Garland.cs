@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
 using CodeChallenge.Core;
 
 namespace Lab3
 {
-    public class Garland : IConsoleTask
+    public class Garland : ConsoleTask
     {
         private const double Error = 0.000001;
 
@@ -44,15 +43,15 @@ namespace Lab3
             return garland.Last();
         }
 
-        public void ExecuteConsole()
+        public override void Execute()
         {
-            var query = Console.ReadLine().Split();
+            var query = ReadLine().Split();
 
             var bulbCount = int.Parse(query[0]);
             var initialHeight = double.Parse(query[1], CultureInfo.InvariantCulture);
 
             var result = FindFiniteHeight(bulbCount, initialHeight);
-            Console.WriteLine(result.ToString("0.##", CultureInfo.InvariantCulture));
+            WriteLine(result.ToString("0.##", CultureInfo.InvariantCulture));
         }
     }
 }

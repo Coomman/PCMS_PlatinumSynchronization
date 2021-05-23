@@ -148,24 +148,24 @@ namespace Lab5
         }
     }
 
-    public class MultiMapChecker : IFileTask
+    public class MultiMapChecker : FileTask
     {
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
             var multiMap = new MultiMap<string, string>();
 
-            while (!sr.EndOfStream)
+            while (!Sr.EndOfStream)
             {
-                var query = sr.ReadLine().Split();
+                var query = ReadLine().Split();
 
                 switch (query[0][0])
                 {
                     case 'g':
                         var set = multiMap.Get(query[1]);
                         if (set == null)
-                            sw.WriteLine(0);
+                            WriteLine(0);
                         else
-                            set.Show(sw);
+                            set.Show(Sw);
                         break;
                     case 'p':
                         multiMap.Add(query[1], query[2]);

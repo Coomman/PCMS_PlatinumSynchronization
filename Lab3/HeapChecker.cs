@@ -7,7 +7,7 @@ using CodeChallenge.Core;
 
 namespace Lab3
 {
-    public class HeapChecker : IFileTask
+    public class HeapChecker : FileTask
     {
         public static bool IsHeap<T>(IList<T> arr) where T : IComparable
         {
@@ -19,12 +19,12 @@ namespace Lab3
             return true;
         }
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            sr.ReadLine();
-            var arr = sr.ReadLine().TrimEnd().Split().Select(int.Parse).ToArray();
+            ReadLine();
+            var arr = ReadIntArray();
 
-            sw.Write(IsHeap(arr) ? "YES" : "NO");
+            Write(IsHeap(arr) ? "YES" : "NO");
         }
     }
 }

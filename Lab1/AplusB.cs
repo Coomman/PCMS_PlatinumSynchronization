@@ -1,18 +1,17 @@
-﻿using System.IO;
-using CodeChallenge.Core;
+﻿using CodeChallenge.Core;
 
 namespace Lab1
 {
-    public class AplusB : IFileTask
+    public class AplusB : FileTask
     {
         public int Add(int first, int second)
             => first + second;
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            var query = sr.ReadLine().Split();
+            var numbers = ReadIntArray();
 
-            sw.WriteLine(Add(int.Parse(query[0]), int.Parse(query[1])));
+            WriteLine(Add(numbers[0], numbers[1]));
         }
     }
 }

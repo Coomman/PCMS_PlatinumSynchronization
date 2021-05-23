@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
@@ -84,21 +83,21 @@ namespace Lab8
             => string.Join(" ", _vertexes.Select(v => v.Value));
     }
 
-    public class PathFinder : IConsoleTask
+    public class PathFinder : ConsoleTask
     {
-        public void ExecuteConsole()
+        public override void Execute()
         {
-            var query = Console.ReadLine().Split();
+            var numbers = ReadIntArray();
 
-            var vertexCount = int.Parse(query[0]);
-            var edgesCount = int.Parse(query[1]);
+            var vertexCount = numbers[0];
+            var edgesCount = numbers[1];
 
             var edges = Enumerable.Repeat(0, vertexCount)
                 .Select(edge => new HashSet<int>()).ToArray();
 
             for (int i = 0; i < edgesCount; i++)
             {
-                var edge = Console.ReadLine().TrimEnd().Split()
+                var edge = ReadLine().TrimEnd().Split()
                     .Select(v => int.Parse(v) - 1).ToArray();
 
                 if (edge[0] == edge[1])
@@ -111,7 +110,7 @@ namespace Lab8
             var graph = new Graph(vertexCount, edges);
 
             graph.Bfs(0);
-            Console.WriteLine(graph.GetVertexesInfo());
+            WriteLine(graph.GetVertexesInfo());
         }
     }
 }

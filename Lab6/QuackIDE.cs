@@ -174,15 +174,15 @@ namespace Lab6
         }
     }
 
-    public class QuackIDE : IConsoleTask
+    public class QuackIDE : ConsoleTask
     {
-        public void ExecuteConsole()
+        public override void Execute()
         {
             var quack = new QuackInterpreter(Console.Out);
 
             while (true)
             {
-                var query = Console.ReadLine();
+                var query = ReadLine();
                 if (query == null)
                     break;
 

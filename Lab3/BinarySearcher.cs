@@ -4,7 +4,7 @@ using CodeChallenge.Core;
 
 namespace Lab3
 {
-    public class BinarySearcher : IConsoleTask
+    public class BinarySearcher : ConsoleTask
     {
         public static int FindEntry<T>(T[] arr, T searchValue, bool needFirst) where T : IComparable
         {
@@ -30,13 +30,13 @@ namespace Lab3
             return -1;
         }
 
-        public void ExecuteConsole()
+        public override void Execute()
         {
-            Console.ReadLine();
-            var arr = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            ReadLine();
+            var arr = ReadIntArray();
 
-            Console.ReadLine();
-            var queries = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            ReadLine();
+            var queries = ReadIntArray();
 
             foreach (var query in queries)
             {
@@ -45,7 +45,7 @@ namespace Lab3
                     ? -1
                     : FindEntry(arr, query, false);
 
-                Console.WriteLine($"{firstEntry} {lastEntry}");
+                WriteLine($"{firstEntry} {lastEntry}");
             }
         }
     }

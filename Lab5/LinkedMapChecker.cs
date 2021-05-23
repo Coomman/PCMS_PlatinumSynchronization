@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CodeChallenge.Core;
 
 namespace Lab5
@@ -85,21 +84,21 @@ namespace Lab5
             => Get(key)?.Next;
     }
 
-    public class LinkedMapChecker : IFileTask
+    public class LinkedMapChecker : FileTask
     {
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
             var linkedMap = new LinkedMap<string, string>();
 
-            while (!sr.EndOfStream)
+            while (!Sr.EndOfStream)
             {
-                var query = sr.ReadLine().Split();
+                var query = ReadLine().Split();
 
                 switch (query[0][0])
                 {
                     case 'g':
                         var node = linkedMap.Get(query[1]);
-                        sw.WriteLine(node?.Value ?? "none");
+                        WriteLine(node?.Value ?? "none");
                         break;
                     case 'p' when query[0][1] == 'u':
                         linkedMap.Add(query[1], query[2]);
@@ -109,11 +108,11 @@ namespace Lab5
                         break;
                     case 'p' when query[0][1] == 'r':
                         node = linkedMap.Prev(query[1]);
-                        sw.WriteLine(node?.Value ?? "none");
+                        WriteLine(node?.Value ?? "none");
                         break;
                     case 'n':
                         node = linkedMap.Next(query[1]);
-                        sw.WriteLine(node?.Value ?? "none");
+                        WriteLine(node?.Value ?? "none");
                         break;
                 }
             }

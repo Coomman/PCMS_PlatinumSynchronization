@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
@@ -7,7 +6,7 @@ using CodeChallenge.Core;
 
 namespace Lab7
 {
-    public class BalanceCalculator : IFileTask
+    public class BalanceCalculator : FileTask
     {
         public class Node
         {
@@ -61,27 +60,27 @@ namespace Lab7
             return Math.Max(leftHeight, rightHeight) + 1;
         }
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            var length = int.Parse(sr.ReadLine());
+            var length = ReadInt();
 
             if (length < 2)
             {
-                sw.Write(0);
+                Write(0);
                 return;
             }
 
             var tree = new Node[length];
             for (int i = 0; i < length; i++)
             {
-                var query = sr.ReadLine().Split();
-                tree[i] = new Node(int.Parse(query[0]), int.Parse(query[1]) - 1, int.Parse(query[2]) - 1);
+                var numbers = ReadIntArray();
+                tree[i] = new Node(numbers[0], numbers[1] - 1, numbers[2] - 1);
             }
 
             DfsAsync(tree, tree[0]).Wait();
 
             foreach (var node in tree)
-                sw.WriteLine(node.Balance);
+                WriteLine(node.Balance);
         }
     }
 }

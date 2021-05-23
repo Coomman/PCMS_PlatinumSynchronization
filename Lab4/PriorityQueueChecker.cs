@@ -72,16 +72,16 @@ namespace Lab4
         }
     }
 
-    public class PriorityQueueChecker : IConsoleTask
+    public class PriorityQueueChecker : ConsoleTask
     {
-        public void ExecuteConsole()
+        public override void Execute()
         {
             var heap = new PriorityQueue<int>();
             long cmdNum = 1;
 
             do
             {
-                var query = Console.ReadLine()?.Split();
+                var query = ReadLine()?.Split();
                 if (query == null)
                     return;
 

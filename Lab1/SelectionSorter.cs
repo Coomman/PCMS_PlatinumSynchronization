@@ -1,20 +1,18 @@
-﻿using System.IO;
-using System.Linq;
-using CodeChallenge.Core;
+﻿using CodeChallenge.Core;
 
 namespace Lab1
 {
-    public class SelectionSorter : IFileTask
+    public class SelectionSorter : FileTask
     {
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public void ExecuteFile()
         {
-            var length = int.Parse(sr.ReadLine());
+            var length = ReadInt();
 
-            var arr = sr.ReadLine().TrimEnd().Split().Select(int.Parse).ToArray();
+            var arr = ReadIntArray();
 
             arr.SelectionSort(0, length - 1);
 
-            sw.WriteLine(string.Join(" ", arr));
+            WriteLine(string.Join(" ", arr));
         }
     }
 }

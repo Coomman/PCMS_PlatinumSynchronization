@@ -4,7 +4,7 @@ using CodeChallenge.Core;
 
 namespace Lab2
 {
-    public class AntiQuickSorter : IConsoleTask
+    public class AntiQuickSorter : ConsoleTask
     {
         public static void AntiQuickSort<T>(T[] arr)
         {
@@ -12,9 +12,9 @@ namespace Lab2
                 arr.Swap(i, i / 2);
         }
 
-        public void ExecuteConsole()
+        public override void Execute()
         {
-            int length = int.Parse(Console.ReadLine());
+            int length = ReadInt();
 
             var arr = Enumerable.Range(1, length).ToArray();
 

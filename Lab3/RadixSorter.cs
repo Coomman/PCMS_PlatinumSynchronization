@@ -4,7 +4,7 @@ using CodeChallenge.Core;
 
 namespace Lab3
 {
-    public class RadixSorter : IConsoleTask
+    public class RadixSorter : ConsoleTask
     {
         private static int CharToInt(char c)
             => c - 97;
@@ -29,13 +29,13 @@ namespace Lab3
                 CountingSort(arr, strLen - i - 1);
         }
 
-        public void ExecuteConsole()
+        public override void Execute()
         {
-            var query = Console.ReadLine().Split();
+            var numbers = ReadIntArray();
 
-            int length = int.Parse(query[0]);
-            int strLen = int.Parse(query[1]);
-            int iterationCount = int.Parse(query[2]);
+            int length = numbers[0];
+            int strLen = numbers[1];
+            int iterationCount = numbers[2];
 
             var arr = new List<string>(length);
             for (int i = 0; i < length; i++)
@@ -43,7 +43,7 @@ namespace Lab3
 
             RadixSort(arr, iterationCount, strLen);
 
-            Console.WriteLine(string.Join("\n", arr));
+            WriteLine(string.Join("\n", arr));
         }
     }
 }

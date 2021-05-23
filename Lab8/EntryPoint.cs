@@ -6,12 +6,12 @@ namespace Lab8
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteFile(new EdgesToMatrix());
-            //TaskRunner.ExecuteFile(new IndirectCheck());
-            //TaskRunner.ExecuteFile(new ParallelEdgesCheck());
-            //TaskRunner.ExecuteFile(new Components(), "components");
-            //TaskRunner.ExecuteConsole(new PathFinder());
-            TaskRunner.ExecuteFile(new LabyrinthExplorer());
+            //TaskRunner.ExecuteFileTask(new EdgesToMatrix());
+            //TaskRunner.ExecuteFileTask(new IndirectCheck());
+            //TaskRunner.ExecuteFileTask(new ParallelEdgesCheck());
+            //TaskRunner.ExecuteFileTask(new Components(), "components");
+            //TaskRunner.ExecuteConsoleTask(new PathFinder());
+            TaskRunner.ExecuteFileTask(new LabyrinthExplorer());
         }
     }
 }

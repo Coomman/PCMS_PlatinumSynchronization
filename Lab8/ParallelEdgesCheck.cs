@@ -1,29 +1,28 @@
-﻿using System.IO;
-using CodeChallenge.Core;
+﻿using CodeChallenge.Core;
 
 namespace Lab8
 {
-    public class ParallelEdgesCheck : IFileTask
+    public class ParallelEdgesCheck : FileTask
     {
         private AdjMatrix _adjMatrix;
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            var query = sr.ReadLine().Split();
+            var numbers = ReadIntArray();
 
-            var vertexCount = int.Parse(query[0]);
-            var edgesCount = int.Parse(query[1]);
+            var vertexCount = numbers[0];
+            var edgesCount = numbers[1];
 
             var edges = new (int from, int to)[edgesCount];
             for (int i = 0; i < edgesCount; i++)
             {
-                query = sr.ReadLine().Split();
-                edges[i] = (int.Parse(query[0]) - 1, int.Parse(query[1]) - 1);
+                numbers = ReadIntArray();
+                edges[i] = (numbers[0] - 1, numbers[1] - 1);
             }
 
             _adjMatrix = new AdjMatrix(vertexCount);
 
-            sw.WriteLine(_adjMatrix.FillIndirect(edges) ? "YES" : "NO");
+            WriteLine(_adjMatrix.FillIndirect(edges) ? "YES" : "NO");
         }
     }
 }

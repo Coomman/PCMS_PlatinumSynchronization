@@ -3,7 +3,7 @@ using CodeChallenge.Core;
 
 namespace Lab1
 {
-    public class Turtle : IFileTask
+    public class Turtle : FileTask
     {
         private int[,] _field;
 
@@ -12,7 +12,8 @@ namespace Lab1
 
         public int MaxValue { get; private set; }
 
-        public Turtle() { }
+        public Turtle() {}
+
         public Turtle(int[,] field, int height, int width)
         {
             _field = field;
@@ -36,25 +37,25 @@ namespace Lab1
             _field[i, j] -= value;
         }
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            var query = sr.ReadLine().Split();
+            var numbers = ReadIntArray();
 
-            _height = int.Parse(query[0]);
-            _width = int.Parse(query[1]);
+            _height = numbers[0];
+            _width = numbers[1];
 
             _field = new int[_height, _width];
             for (int i = 0; i < _height; i++)
             {
-                query = sr.ReadLine().Split();
+                numbers = ReadIntArray();
 
                 for (int j = 0; j < _width; j++)
-                    _field[i, j] = int.Parse(query[j]);
+                    _field[i, j] = numbers[j];
             }
 
             FindBestPath(0, _width - 1);
 
-            sw.WriteLine(MaxValue);
+            WriteLine(MaxValue);
         }
     }
 }

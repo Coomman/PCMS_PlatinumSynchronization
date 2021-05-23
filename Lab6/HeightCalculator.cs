@@ -1,12 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using CodeChallenge.Core;
 
 namespace Lab6
 {
-    public class HeightCalculator : IFileTask
+    public class HeightCalculator : FileTask
     {
         public static int GetHeight(IList<(int lch, int rch)> tree)
         {
@@ -32,13 +31,13 @@ namespace Lab6
             return height;
         }
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            var length = int.Parse(sr.ReadLine());
+            var length = ReadInt();
 
             if (length == 0)
             {
-                sw.Write(0);
+                Write(0);
                 return;
             }
 
@@ -46,12 +45,12 @@ namespace Lab6
 
             for (int i = 0; i < length; i++)
             {
-                var query = sr.ReadLine().Split();
+                var query = ReadLine().Split();
 
                 tree[i] = ((int.Parse(query[1]) - 1, int.Parse(query[2]) - 1));
             }
 
-            sw.Write(GetHeight(tree));
+            Write(GetHeight(tree));
         }
     }
 }

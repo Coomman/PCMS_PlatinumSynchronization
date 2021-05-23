@@ -4,7 +4,7 @@ using CodeChallenge.Core;
 
 namespace Lab2
 {
-    public class KthStat : IConsoleTask
+    public class KthStat : ConsoleTask
     {
         private static void SetPivot<T>(IList<T> arr, int l, int r) where T : IComparable
         {
@@ -76,22 +76,22 @@ namespace Lab2
                 arr[i] = A * arr[i - 2] + B * arr[i - 1] + C;
         }
 
-        public void ExecuteConsole()
+        public override void Execute()
         {
-            var query = Console.ReadLine().Split();
+            var numbers = ReadIntArray();
 
-            int length = int.Parse(query[0]);
-            int k = int.Parse(query[1]);
+            int length = numbers[0];
+            int k = numbers[1];
 
-            query = Console.ReadLine().Split();
+            numbers = ReadIntArray();
 
-            int A = int.Parse(query[0]);
-            int B = int.Parse(query[1]);
-            int C = int.Parse(query[2]);
+            int A = numbers[0];
+            int B = numbers[1];
+            int C = numbers[2];
 
             var arr = new int[length];
-            arr[0] = int.Parse(query[3]);
-            arr[1] = int.Parse(query[4]);
+            arr[0] = numbers[3];
+            arr[1] = numbers[4];
 
             FillArray(arr, A, B, C);
 

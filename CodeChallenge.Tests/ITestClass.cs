@@ -5,6 +5,6 @@ namespace CodeChallenge.Tests
     public interface ITestClass
     {
         [Test]
-        void ExampleTest();
+        public void ExampleTest();
     }
 }

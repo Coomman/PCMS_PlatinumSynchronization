@@ -1,13 +1,11 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
 using System.Collections.Generic;
 
 using CodeChallenge.Core;
 
 namespace Lab2
 {
-    public class InversionCounter : IFileTask
+    public class InversionCounter : FileTask
     {
         public long InversionsCount { get; private set; }
 
@@ -55,15 +53,15 @@ namespace Lab2
             Merge(arr, left, mid, right);
         }
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            var length = int.Parse(sr.ReadLine());
+            var length = ReadInt();
 
-            var arr = sr.ReadLine().TrimEnd().Split().Select(int.Parse).ToArray();
+            var arr = ReadIntArray();
 
             MergeSort(arr, 0, length - 1);
 
-            sw.Write(InversionsCount);
+            Write(InversionsCount);
         }
     }
 }

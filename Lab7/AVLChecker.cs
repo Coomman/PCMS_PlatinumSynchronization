@@ -1,32 +1,31 @@
-﻿using System.IO;
-using CodeChallenge.Core;
+﻿using CodeChallenge.Core;
 
 namespace Lab7
 {
-    public class AVLChecker : IFileTask
+    public class AVLChecker : FileTask
     {
         private readonly AVL _avl = new AVL();
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            sr.ReadLine();
+            ReadLine();
 
-            while (!sr.EndOfStream)
+            while (!Sr.EndOfStream)
             {
-                var query = sr.ReadLine().Split();
+                var query = ReadLine().Split();
 
                 switch (query[0][0])
                 {
                     case 'A':
                         _avl.Insert(int.Parse(query[1]));
-                        sw.WriteLine(_avl.GetRootBalance());
+                        WriteLine(_avl.GetRootBalance());
                         break;
                     case 'D':
                         _avl.Delete(int.Parse(query[1]));
-                        sw.WriteLine(_avl.GetRootBalance());
+                        WriteLine(_avl.GetRootBalance());
                         break;
                     case 'C':
-                        sw.WriteLine(_avl.Find(int.Parse(query[1])) is null ? "N" : "Y");
+                        WriteLine(_avl.Find(int.Parse(query[1])) is null ? "N" : "Y");
                         break;
                 }
             }

@@ -6,10 +6,10 @@ namespace Lab6
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteFile(new HeightCalculator(), "height");
-            //TaskRunner.ExecuteFile(new TreeChecker(), "check");
-            //TaskRunner.ExecuteFile(new BSTChecker(), "bstsimple");
-            TaskRunner.ExecuteConsole(new QuackIDE());
+            //TaskRunner.ExecuteFileTask(new HeightCalculator(), "height");
+            //TaskRunner.ExecuteFileTask(new TreeChecker(), "check");
+            //TaskRunner.ExecuteFileTask(new BSTChecker(), "bstsimple");
+            TaskRunner.ExecuteConsoleTask(new QuackIDE());
         }
     }
 }

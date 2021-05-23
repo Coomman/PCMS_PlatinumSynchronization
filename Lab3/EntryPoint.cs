@@ -6,11 +6,11 @@ namespace Lab3
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteConsole(new BinarySearcher());
-            //TaskRunner.ExecuteConsole(new Garland());
-            //TaskRunner.ExecuteFile(new HeapChecker(), "isheap");
-            //TaskRunner.ExecuteFile(new HeapSorter(), "sort");
-            TaskRunner.ExecuteConsole(new RadixSorter());
+            //TaskRunner.ExecuteConsoleTask(new BinarySearcher());
+            //TaskRunner.ExecuteConsoleTask(new Garland());
+            //TaskRunner.ExecuteFileTask(new HeapChecker(), "isheap");
+            //TaskRunner.ExecuteFileTask(new HeapSorter(), "sort");
+            TaskRunner.ExecuteConsoleTask(new RadixSorter());
         }
     }
 }

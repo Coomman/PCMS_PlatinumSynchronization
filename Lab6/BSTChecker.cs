@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using CodeChallenge.Core;
 
 namespace Lab6
@@ -185,15 +184,15 @@ namespace Lab6
         }
     }
 
-    public class BSTChecker : IFileTask
+    public class BSTChecker : FileTask
     {
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
             var tree = new BST<int>();
 
-            while (!sr.EndOfStream)
+            while (!Sr.EndOfStream)
             {
-                var query = sr.ReadLine().Split();
+                var query = ReadLine().Split();
 
                 switch (query[0][0])
                 {
@@ -201,18 +200,18 @@ namespace Lab6
                         tree.Insert(int.Parse(query[1]));
                         break;
                     case 'e':
-                        sw.WriteLine(tree.Find(int.Parse(query[1])) is null ? "false" : "true");
+                        WriteLine(tree.Find(int.Parse(query[1])) is null ? "false" : "true");
                         break;
                     case 'd':
                         tree.Delete(int.Parse(query[1]));
                         break;
                     case 'p':
                         var node = tree.GetPrev(int.Parse(query[1]));
-                        sw.WriteLine(node is null ? "none" : node.Value.ToString());
+                        WriteLine(node is null ? "none" : node.Value.ToString());
                         break;
                     default:
                         node = tree.GetNext(int.Parse(query[1]));
-                        sw.WriteLine(node is null ? "none" : node.Value.ToString());
+                        WriteLine(node is null ? "none" : node.Value.ToString());
                         break;
                 }
             }

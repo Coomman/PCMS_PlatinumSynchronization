@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CodeChallenge.Core;
 
 namespace Lab5
@@ -57,21 +56,21 @@ namespace Lab5
         }
     }
 
-    public class MapChecker : IFileTask
+    public class MapChecker : FileTask
     {
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
             var map = new Map<string, string>();
 
-            while (!sr.EndOfStream)
+            while (!Sr.EndOfStream)
             {
-                var query = sr.ReadLine().Split();
+                var query = ReadLine().Split();
 
                 switch (query[0][0])
                 {
                     case 'g':
                         var node = map.Get(query[1]);
-                        sw.WriteLine(node?.Value ?? "none");
+                        WriteLine(node?.Value ?? "none");
                         break;
                     case 'p':
                         map.Add(query[1], query[2]);

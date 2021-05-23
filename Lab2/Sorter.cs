@@ -1,20 +1,18 @@
-﻿using System;
-using System.Linq;
-using CodeChallenge.Core;
+﻿using CodeChallenge.Core;
 
 namespace Lab2
 {
-    public class Sorter : IConsoleTask
+    public class Sorter : ConsoleTask
     {
-        public void ExecuteConsole()
+        public override void Execute()
         {
-            Console.ReadLine();
+            ReadLine();
 
-            var arr = Console.ReadLine().Split().Select(int.Parse).ToArray();
+            var arr = ReadIntArray();
 
             arr.MergeSort(0, arr.Length - 1);
 
-            Console.Write(string.Join(" ", arr));
+            Write(string.Join(" ", arr));
         }
     }
 }

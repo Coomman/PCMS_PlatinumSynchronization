@@ -6,11 +6,11 @@ namespace Lab2
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteConsole(new Sorter<int>());
-            //TaskRunner.ExecuteFile(new Race(), "race");
-            //TaskRunner.ExecuteFile(new InversionCounter(), "inversions");
-            //TaskRunner.ExecuteConsole(new AntiQuickSorter());
-            TaskRunner.ExecuteConsole(new KthStat());
+            //TaskRunner.ExecuteConsoleTask(new Sorter());
+            //TaskRunner.ExecuteFileTask(new Race(), "race");
+            //TaskRunner.ExecuteFileTask(new InversionCounter(), "inversions");
+            //TaskRunner.ExecuteConsoleTask(new AntiQuickSorter());
+            TaskRunner.ExecuteConsoleTask(new KthStat());
         }
     }
 }

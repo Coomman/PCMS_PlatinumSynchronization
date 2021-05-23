@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 
 using CodeChallenge.Core;
@@ -42,21 +41,21 @@ namespace Lab8
             => string.Join(" ", _vertexes);
     }
 
-    public class Components : IFileTask
+    public class Components : FileTask
     {
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public void Execute()
         {
-            var query = sr.ReadLine().Split();
+            var numbers = ReadIntArray();
 
-            var vertexCount = int.Parse(query[0]);
-            var edgesCount = int.Parse(query[1]);
+            var vertexCount = numbers[0];
+            var edgesCount = numbers[1];
 
             var edges = Enumerable.Repeat(0, vertexCount)
                 .Select(edge => new HashSet<int>()).ToArray();
 
             for (int i = 0; i < edgesCount; i++)
             {
-                var edge = sr.ReadLine().TrimEnd().Split()
+                var edge = ReadLine().TrimEnd().Split()
                     .Select(v => int.Parse(v) - 1).ToArray();
 
                 if(edge[0] == edge[1])
@@ -72,8 +71,8 @@ namespace Lab8
                 if(graph[i] == 0)
                     graph.Bfs(i);
 
-            sw.WriteLine(graph.ComponentCount);
-            sw.WriteLine(graph.GetVertexesInfo());
+            WriteLine(graph.ComponentCount);
+            WriteLine(graph.GetVertexesInfo());
         }
     }
 }

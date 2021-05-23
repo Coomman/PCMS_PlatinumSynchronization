@@ -6,11 +6,11 @@ namespace Lab4
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteFile(new StackChecker(), "stack");
-            //TaskRunner.ExecuteFile(new QueueChecker(), "queue");
-            //TaskRunner.ExecuteFile(new BracketsController(), "brackets");
-            //TaskRunner.ExecuteFile(new PolishNotationController(), "postfix");
-            TaskRunner.ExecuteConsole(new PriorityQueueChecker());
+            TaskRunner.ExecuteFileTask(new StackChecker(), "stack");
+            TaskRunner.ExecuteFileTask(new QueueChecker(), "queue");
+            TaskRunner.ExecuteFileTask(new BracketsController(), "brackets");
+            TaskRunner.ExecuteFileTask(new PolishNotationController(), "postfix");
+            TaskRunner.ExecuteConsoleTask(new PriorityQueueChecker());
         }
     }
 }

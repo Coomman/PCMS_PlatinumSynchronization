@@ -6,11 +6,11 @@ namespace Lab7
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteFile(new BalanceCalculator(), "balance");
-            //TaskRunner.ExecuteFile(new Rotation(), "rotation");
-            //TaskRunner.ExecuteFile(new Insertion(), "addition");
-            //TaskRunner.ExecuteFile(new Deletion(), "deletion");
-            TaskRunner.ExecuteFile(new AVLChecker(), "avlset");
+            //TaskRunner.ExecuteFileTask(new BalanceCalculator(), "balance");
+            //TaskRunner.ExecuteFileTask(new Rotation(), "rotation");
+            //TaskRunner.ExecuteFileTask(new Insertion(), "addition");
+            //TaskRunner.ExecuteFileTask(new Deletion(), "deletion");
+            TaskRunner.ExecuteFileTask(new AVLChecker(), "avlset");
         }
     }
 }

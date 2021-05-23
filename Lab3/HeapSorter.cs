@@ -137,17 +137,17 @@ namespace Lab3
         }
     }
 
-    public class HeapSorter : IFileTask
+    public class HeapSorter : FileTask
     {
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            sr.ReadLine();
-            var arr = sr.ReadLine().TrimEnd().Split().Select(int.Parse).ToArray();
+            ReadLine();
+            var arr = ReadIntArray();
 
             var heap = new Heap<int>(HeapType.Min);
             heap.Sort(arr);
 
-            sw.Write(string.Join(" ", arr));
+            Write(string.Join(" ", arr));
         }
     }
 }

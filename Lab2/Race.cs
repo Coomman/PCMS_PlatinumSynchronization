@@ -1,10 +1,9 @@
 ﻿using System;
-using System.IO;
 using CodeChallenge.Core;
 
 namespace Lab2
 {
-    public class Race : IFileTask
+    public class Race : FileTask
     {
         public class Racer :IComparable
         {
@@ -26,14 +25,14 @@ namespace Lab2
             }
         }
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            int length = int.Parse(sr.ReadLine());
+            int length = ReadInt();
             var racers = new Racer[length];
 
             for (int i = 0; i < length; i++)
             {
-                var query = sr.ReadLine().Split();
+                var query = ReadLine().Split();
                 racers[i] = new Racer(query[1], query[0]);
             }
 
@@ -44,11 +43,11 @@ namespace Lab2
             {
                 if (lastCountry != racer.Country)
                 {
-                    sw.WriteLine($"=== {racer.Country} ===");
+                    WriteLine($"=== {racer.Country} ===");
                     lastCountry = racer.Country;
                 }
 
-                sw.WriteLine(racer.Surname);
+                WriteLine(racer.Surname);
             }
         }
     }

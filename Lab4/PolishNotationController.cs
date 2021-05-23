@@ -1,9 +1,8 @@
-﻿using System.IO;
-using CodeChallenge.Core;
+﻿using CodeChallenge.Core;
 
 namespace Lab4
 {
-    public class PolishNotationController : IFileTask
+    public class PolishNotationController : FileTask
     {
         private readonly Stack<int> _stack = new Stack<int>(100);
 
@@ -29,9 +28,9 @@ namespace Lab4
             return _stack.Pop();
         }
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            var query = sr.ReadLine().TrimEnd().Split();
+            var query = ReadLine().TrimEnd().Split();
 
             var pc = new PolishNotationController();
 
@@ -57,7 +56,7 @@ namespace Lab4
                 }
             }
 
-            sw.WriteLine(pc.GetAnswer());
+            WriteLine(pc.GetAnswer());
         }
     }
 }

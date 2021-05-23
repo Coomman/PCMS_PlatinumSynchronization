@@ -1,28 +1,26 @@
-﻿using System.IO;
-using System.Linq;
-using CodeChallenge.Core;
+﻿using CodeChallenge.Core;
 
 namespace Lab8
 {
-    public class IndirectCheck : IFileTask
+    public class IndirectCheck : FileTask
     {
         private AdjMatrix _adjMatrix;
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            int vertexCount = int.Parse(sr.ReadLine());
+            int vertexCount = ReadInt();
 
             _adjMatrix = new AdjMatrix(vertexCount);
 
             for (int i = 0; i < vertexCount; i++)
             {
-                var query = sr.ReadLine().TrimEnd().Split().Select(int.Parse).ToList();
+                var numbers = ReadIntArray();
 
                 for (int j = 0; j < vertexCount; j++)
-                    _adjMatrix[i, j] = query[j] == 1;
+                    _adjMatrix[i, j] = numbers[j] == 1;
             }
 
-            sw.WriteLine(_adjMatrix.IsIndirect() ? "YES" : "NO");
+            WriteLine(_adjMatrix.IsIndirect() ? "YES" : "NO");
         }
     }
 }

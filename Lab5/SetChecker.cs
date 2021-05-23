@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CodeChallenge.Core;
 
 namespace Lab5
@@ -33,20 +32,20 @@ namespace Lab5
         }
     }
 
-    public class SetChecker : IFileTask
+    public class SetChecker : FileTask
     {
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
             var set = new Set<int>();
 
-            while (!sr.EndOfStream)
+            while (!Sr.EndOfStream)
             {
-                var query = sr.ReadLine().Split();
+                var query = ReadLine().Split();
 
                 switch (query[0][0])
                 {
                     case 'e':
-                        sw.WriteLine(set.Contains(int.Parse(query[1])) ? "true" : "false");
+                        WriteLine(set.Contains(int.Parse(query[1])) ? "true" : "false");
                         break;
                     case 'i':
                         set.Add(int.Parse(query[1]));

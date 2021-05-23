@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,7 +6,7 @@ using CodeChallenge.Core;
 
 namespace Lab6
 {
-    public class TreeChecker : IFileTask
+    public class TreeChecker : FileTask
     {
         public class Node
         {
@@ -87,13 +86,13 @@ namespace Lab6
             return !results.Any() || results.All(res => res is true);
         }
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            var length = int.Parse(sr.ReadLine());
+            var length = ReadInt();
 
             if (length < 2)
             {
-                sw.Write("YES");
+                Write("YES");
                 return;
             }
 
@@ -101,12 +100,11 @@ namespace Lab6
 
             for (int i = 0; i < length; i++)
             {
-                var query = sr.ReadLine().Split();
-
-                tree[i] = new Node(int.Parse(query[0]),int.Parse(query[1]) - 1, int.Parse(query[2]) - 1);
+                var numbers = ReadIntArray();
+                tree[i] = new Node(numbers[0], numbers[1] - 1, numbers[2] - 1);
             }
 
-            sw.Write(Check(tree, tree[0]).GetAwaiter().GetResult() ? "YES" : "NO");
+            Write(Check(tree, tree[0]).GetAwaiter().GetResult() ? "YES" : "NO");
         }
     }
 }

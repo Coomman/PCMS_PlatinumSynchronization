@@ -1,9 +1,8 @@
-﻿using System.IO;
-using CodeChallenge.Core;
+﻿using CodeChallenge.Core;
 
 namespace Lab4
 {
-    public class BracketsController : IFileTask
+    public class BracketsController : FileTask
     {
         public static bool CheckBracketSequence(string bracketSeq)
         {
@@ -28,15 +27,15 @@ namespace Lab4
             return stack.IsEmpty;
         }
 
-        public void ExecuteFile(StreamReader sr, StreamWriter sw)
+        public override void Execute()
         {
-            while (!sr.EndOfStream)
+            while (!Sr.EndOfStream)
             {
-                var bracketSequence = sr.ReadLine();
+                var bracketSequence = ReadLine();
 
                 var result = CheckBracketSequence(bracketSequence);
 
-                sw.WriteLine(result ? "YES" : "NO");
+                WriteLine(result ? "YES" : "NO");
             }
         }
     }
