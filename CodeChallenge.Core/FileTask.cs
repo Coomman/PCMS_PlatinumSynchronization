@@ -49,7 +49,7 @@ namespace CodeChallenge.Core
             Sw?.Dispose();
         }
 
-        public virtual void Execute()
+        public override void Execute()
         {
             throw new NotImplementedException();
         }

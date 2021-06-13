@@ -36,7 +36,7 @@ namespace CodeChallenge.Core
             Console.WriteLine(value);
         }
 
-        public virtual void Execute()
+        public override void Execute()
         {
             throw new NotImplementedException();
         }

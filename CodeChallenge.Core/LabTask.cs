@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -30,6 +31,11 @@ namespace CodeChallenge.Core
                 .Split()
                 .Select(el => float.Parse(el, CultureInfo.InvariantCulture))
                 .ToArray();
+        }
+
+        public virtual void Execute()
+        {
+            throw new NotImplementedException();
         }
     }
 }
