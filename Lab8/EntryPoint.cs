@@ -1,4 +1,4 @@
-﻿using CodeChallenge.Core;
+﻿using static CodeChallenge.Core.TaskRunner;
 
 namespace Lab8
 {
@@ -6,12 +6,12 @@ namespace Lab8
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteFileTask(new EdgesToMatrix());
-            //TaskRunner.ExecuteFileTask(new IndirectCheck());
-            //TaskRunner.ExecuteFileTask(new ParallelEdgesCheck());
-            //TaskRunner.ExecuteFileTask(new Components(), "components");
-            //TaskRunner.ExecuteConsoleTask(new PathFinder());
-            TaskRunner.ExecuteFileTask(new LabyrinthExplorer());
+            //ExecuteFileTask<EdgesToMatrix>();
+            //ExecuteFileTask<IndirectCheck>();
+            //ExecuteFileTask<ParallelEdgesCheck>();
+            //ExecuteFileTask<Components>("components");
+            //ExecuteConsoleTask<PathFinder>();
+            ExecuteFileTask<LabyrinthExplorer>();
         }
     }
 }

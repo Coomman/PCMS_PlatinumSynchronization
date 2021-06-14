@@ -5,37 +5,57 @@ using System.Linq;
 
 namespace CodeChallenge.Core
 {
-    public abstract class LabTask
+    public abstract class LabTask : IDisposable
     {
-        protected string ReadLine(TextReader reader)
+        public TextReader TextReader { get; set; }
+        public TextWriter TextWriter { get; set; }
+
+        protected string ReadLine()
         {
-            return reader.ReadLine().Trim();
+            return TextReader.ReadLine().Trim();
         }
 
-        protected int ReadInt(TextReader reader)
+        protected int ReadInt()
         {
-            return int.Parse(ReadLine(reader));
+            return int.Parse(ReadLine());
         }
 
-        protected int[] ReadIntArray(TextReader reader)
+        protected int[] ReadIntArray()
         {
-            return ReadLine(reader)
+            return ReadLine()
                 .Split()
                 .Select(int.Parse)
                 .ToArray();
         }
 
-        protected float[] ReadFloatArray(TextReader reader)
+        protected float[] ReadFloatArray()
         {
-            return ReadLine(reader)
+            return ReadLine()
                 .Split()
                 .Select(el => float.Parse(el, CultureInfo.InvariantCulture))
                 .ToArray();
         }
 
-        public virtual void Execute()
+        protected void Write<T>(T value)
         {
-            throw new NotImplementedException();
+            TextWriter.Write(value);
         }
+
+        protected void WriteLine<T>(T value)
+        {
+            TextWriter.WriteLine(value);
+        }
+        protected void WriteLine()
+        {
+            TextWriter.WriteLine();
+        }
+
+        public void Dispose()
+        {
+            TextWriter?.Dispose();
+            TextReader?.Dispose();
+        }
+
+        public abstract void Execute();
     }
 }

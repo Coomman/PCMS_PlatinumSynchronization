@@ -1,4 +1,4 @@
-﻿using CodeChallenge.Core;
+﻿using static CodeChallenge.Core.TaskRunner;
 
 namespace Lab6
 {
@@ -6,10 +6,10 @@ namespace Lab6
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteFileTask(new HeightCalculator(), "height");
-            //TaskRunner.ExecuteFileTask(new TreeChecker(), "check");
-            //TaskRunner.ExecuteFileTask(new BSTChecker(), "bstsimple");
-            TaskRunner.ExecuteConsoleTask(new QuackIDE());
+            //ExecuteFileTask<HeightCalculator>("height");
+            //ExecuteFileTask<TreeChecker>("check");
+            //ExecuteFileTask<BSTChecker>("bstsimple");
+            ExecuteConsoleTask<QuackIDE>();
         }
     }
 }

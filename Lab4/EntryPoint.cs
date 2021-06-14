@@ -1,4 +1,4 @@
-﻿using CodeChallenge.Core;
+﻿using static CodeChallenge.Core.TaskRunner;
 
 namespace Lab4
 {
@@ -6,11 +6,11 @@ namespace Lab4
     {
         private static void Main()
         {
-            TaskRunner.ExecuteFileTask(new StackChecker(), "stack");
-            TaskRunner.ExecuteFileTask(new QueueChecker(), "queue");
-            TaskRunner.ExecuteFileTask(new BracketsController(), "brackets");
-            TaskRunner.ExecuteFileTask(new PolishNotationController(), "postfix");
-            TaskRunner.ExecuteConsoleTask(new PriorityQueueChecker());
+            //ExecuteFileTask<StackChecker>("stack");
+            //ExecuteFileTask<QueueChecker>("queue");
+            //ExecuteFileTask<BracketsController>("brackets");
+            //ExecuteFileTask<PolishNotationController>("postfix");
+            ExecuteConsoleTask<PriorityQueueChecker>();
         }
     }
 }

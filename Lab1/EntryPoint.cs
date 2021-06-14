@@ -1,4 +1,4 @@
-﻿using CodeChallenge.Core;
+﻿using static CodeChallenge.Core.TaskRunner;
 
 namespace Lab1
 {
@@ -6,11 +6,11 @@ namespace Lab1
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteFileTask(new AplusB(), "aplusb");
-            //TaskRunner.ExecuteFileTask(new AplusBB(), "aplusbb");
-            //TaskRunner.ExecuteFileTask(new Turtle(), "turtle");
-            //TaskRunner.ExecuteFileTask(new SelectionSorter(), "smallsort");
-            TaskRunner.ExecuteFileTask(new Sortland(), "sortland");
+            //ExecuteFileTask<AplusB>("aplusb");
+            //ExecuteFileTask<AplusBB>("aplusbb");
+            //ExecuteFileTask<Turtle>("turtle");
+            //ExecuteFileTask<SelectionSorter>("smallsort");
+            ExecuteFileTask<Sortland>("sortland");
         }
     }
 }

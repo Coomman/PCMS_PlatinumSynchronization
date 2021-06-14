@@ -1,4 +1,4 @@
-﻿using CodeChallenge.Core;
+﻿using static CodeChallenge.Core.TaskRunner;
 
 namespace Lab5
 {
@@ -6,10 +6,10 @@ namespace Lab5
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteFileTask(new SetChecker(), "set");
-            //TaskRunner.ExecuteFileTask(new MapChecker(), "map");
-            //TaskRunner.ExecuteFileTask(new LinkedMapChecker(), "linkedmap");
-            TaskRunner.ExecuteFileTask(new MultiMapChecker(), "multimap");
+            //ExecuteFileTask<SetChecker>("set");
+            //ExecuteFileTask<MapChecker>("map");
+            //ExecuteFileTask<LinkedMapChecker>("linkedmap");
+            ExecuteFileTask<MultiMapChecker>("multimap");
         }
     }
 }

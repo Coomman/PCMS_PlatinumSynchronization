@@ -1,4 +1,4 @@
-﻿using CodeChallenge.Core;
+﻿using static CodeChallenge.Core.TaskRunner;
 
 namespace Lab2
 {
@@ -6,11 +6,11 @@ namespace Lab2
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteConsoleTask(new Sorter());
-            //TaskRunner.ExecuteFileTask(new Race(), "race");
-            //TaskRunner.ExecuteFileTask(new InversionCounter(), "inversions");
-            //TaskRunner.ExecuteConsoleTask(new AntiQuickSorter());
-            TaskRunner.ExecuteConsoleTask(new KthStat());
+            //ExecuteConsoleTask<Sorter>();
+            //ExecuteFileTask<Race>("race");
+            //ExecuteFileTask<InversionCounter>("inversions");
+            //ExecuteConsoleTask<AntiQuickSorter>();
+            ExecuteConsoleTask<KthStat>();
         }
     }
 }

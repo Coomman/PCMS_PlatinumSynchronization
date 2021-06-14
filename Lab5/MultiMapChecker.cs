@@ -91,14 +91,14 @@ namespace Lab5
                 _hashTable[MakeHash(value)].Remove(node);
             }
 
-            public void Show(StreamWriter sw)
+            public void Show(TextWriter writer)
             {
-                sw.Write($"{Size} ");
+                writer.Write($"{Size} ");
 
                 for (var cur = _lastNode; cur != null; cur = cur.Prev)
-                    sw.Write($"{cur.Value} ");
+                    writer.Write($"{cur.Value} ");
 
-                sw.WriteLine();
+                writer.WriteLine();
             }
         }
 
@@ -154,7 +154,7 @@ namespace Lab5
         {
             var multiMap = new MultiMap<string, string>();
 
-            while (!Sr.EndOfStream)
+            while (!EndOfStream())
             {
                 var query = ReadLine().Split();
 
@@ -165,7 +165,7 @@ namespace Lab5
                         if (set == null)
                             WriteLine(0);
                         else
-                            set.Show(Sw);
+                            set.Show(TextWriter);
                         break;
                     case 'p':
                         multiMap.Add(query[1], query[2]);

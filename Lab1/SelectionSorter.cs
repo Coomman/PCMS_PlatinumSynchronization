@@ -4,7 +4,7 @@ namespace Lab1
 {
     public class SelectionSorter : FileTask
     {
-        public void ExecuteFile()
+        public override void Execute()
         {
             var length = ReadInt();
 

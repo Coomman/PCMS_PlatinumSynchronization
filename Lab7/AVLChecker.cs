@@ -10,7 +10,7 @@ namespace Lab7
         {
             ReadLine();
 
-            while (!Sr.EndOfStream)
+            while (!EndOfStream())
             {
                 var query = ReadLine().Split();
 

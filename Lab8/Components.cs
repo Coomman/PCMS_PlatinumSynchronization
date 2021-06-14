@@ -43,7 +43,7 @@ namespace Lab8
 
     public class Components : FileTask
     {
-        public void Execute()
+        public override void Execute()
         {
             var numbers = ReadIntArray();
 

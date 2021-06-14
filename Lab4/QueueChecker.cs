@@ -66,7 +66,7 @@ namespace Lab4
 
             var queue = new Queue<int>(length);
 
-            while (!Sr.EndOfStream)
+            while (!EndOfStream())
             {
                 var query = ReadLine().Split();
 

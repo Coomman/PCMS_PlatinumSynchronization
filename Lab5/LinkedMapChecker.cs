@@ -90,7 +90,7 @@ namespace Lab5
         {
             var linkedMap = new LinkedMap<string, string>();
 
-            while (!Sr.EndOfStream)
+            while (!EndOfStream())
             {
                 var query = ReadLine().Split();
 

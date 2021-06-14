@@ -1,4 +1,4 @@
-﻿using CodeChallenge.Core;
+﻿using static CodeChallenge.Core.TaskRunner;
 
 namespace Lab7
 {
@@ -6,11 +6,11 @@ namespace Lab7
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteFileTask(new BalanceCalculator(), "balance");
-            //TaskRunner.ExecuteFileTask(new Rotation(), "rotation");
-            //TaskRunner.ExecuteFileTask(new Insertion(), "addition");
-            //TaskRunner.ExecuteFileTask(new Deletion(), "deletion");
-            TaskRunner.ExecuteFileTask(new AVLChecker(), "avlset");
+            //ExecuteFileTask<BalanceCalculator>("balance");
+            //ExecuteFileTask<Rotation>("rotation");
+            //ExecuteFileTask<Insertion>("addition");
+            //ExecuteFileTask<Deletion>("deletion");
+            ExecuteFileTask<AVLChecker>("avlset");
         }
     }
 }

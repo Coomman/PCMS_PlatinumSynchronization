@@ -1,4 +1,4 @@
-﻿using CodeChallenge.Core;
+﻿using static CodeChallenge.Core.TaskRunner;
 
 namespace Lab3
 {
@@ -6,11 +6,11 @@ namespace Lab3
     {
         private static void Main()
         {
-            //TaskRunner.ExecuteConsoleTask(new BinarySearcher());
-            //TaskRunner.ExecuteConsoleTask(new Garland());
-            //TaskRunner.ExecuteFileTask(new HeapChecker(), "isheap");
-            //TaskRunner.ExecuteFileTask(new HeapSorter(), "sort");
-            TaskRunner.ExecuteConsoleTask(new RadixSorter());
+            //ExecuteConsoleTask<BinarySearcher>();
+            //ExecuteConsoleTask<Garland>();
+            //ExecuteFileTask<HeapChecker>("isheap");
+            //ExecuteFileTask<HeapSorter>("sort");
+            ExecuteConsoleTask<RadixSorter>();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Lab4
 
             var stack = new Stack<int>(length);
 
-            while (!Sr.EndOfStream)
+            while (!EndOfStream())
             {
                 var query = ReadLine().Split();
 

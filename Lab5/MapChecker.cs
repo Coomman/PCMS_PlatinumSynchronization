@@ -62,7 +62,7 @@ namespace Lab5
         {
             var map = new Map<string, string>();
 
-            while (!Sr.EndOfStream)
+            while (!EndOfStream())
             {
                 var query = ReadLine().Split();
 

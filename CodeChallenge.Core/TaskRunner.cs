@@ -1,25 +1,31 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading;
 
 namespace CodeChallenge.Core
 {
     public static class TaskRunner
     {
-        public static void ExecuteConsoleTask(ConsoleTask task)
+        public static void ExecuteConsoleTask<T>() where T : ConsoleTask
         {
-            RunTask(task);
+            using (var task = Activator.CreateInstance<T>())
+            {
+                RunTask(task);
+            }
         }
 
-        public static void ExecuteFileTask(FileTask task, string fileName = null)
+        public static void ExecuteFileTask<T>(string fileName = null) where T : FileTask
         {
             string inputFileName = fileName is null ? "input.txt" : $"{fileName}.in";
             string outputFileName = fileName is null ? "output.txt" : $"{fileName}.out";
 
-            using (var sr = new StreamReader(inputFileName))
-            using (var sw = new StreamWriter(outputFileName))
+            var sr = new StreamReader(inputFileName);
+            var sw = new StreamWriter(outputFileName);
+
+            using (var task = Activator.CreateInstance<T>())
             {
-                task.Sr = sr;
-                task.Sw = sw;
+                task.TextReader = sr;
+                task.TextWriter = sw;
 
                 RunTask(task);
             }

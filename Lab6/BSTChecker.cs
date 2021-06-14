@@ -190,7 +190,7 @@ namespace Lab6
         {
             var tree = new BST<int>();
 
-            while (!Sr.EndOfStream)
+            while (!EndOfStream())
             {
                 var query = ReadLine().Split();
 

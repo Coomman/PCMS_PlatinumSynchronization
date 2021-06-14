@@ -38,7 +38,7 @@ namespace Lab5
         {
             var set = new Set<int>();
 
-            while (!Sr.EndOfStream)
+            while (!EndOfStream())
             {
                 var query = ReadLine().Split();
 

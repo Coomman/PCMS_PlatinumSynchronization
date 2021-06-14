@@ -1,4 +1,4 @@
-﻿using CodeChallenge.Core;
+﻿using static CodeChallenge.Core.TaskRunner;
 
 namespace Lab9
 {
@@ -6,7 +6,7 @@ namespace Lab9
     {
         private static void Main()
         {
-            TaskRunner.ExecuteConsoleTask(new TopologicalSorter());
+            ExecuteConsoleTask<TopologicalSorter>();
         }
     }
 }

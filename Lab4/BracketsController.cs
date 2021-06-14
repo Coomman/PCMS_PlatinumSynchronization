@@ -29,7 +29,7 @@ namespace Lab4
 
         public override void Execute()
         {
-            while (!Sr.EndOfStream)
+            while (!EndOfStream())
             {
                 var bracketSequence = ReadLine();
 
