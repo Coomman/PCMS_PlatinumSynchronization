@@ -10,6 +10,9 @@ namespace CodeChallenge.Core
         {
             using (var task = Activator.CreateInstance<T>())
             {
+                task.TextReader = Console.In;
+                task.TextWriter = Console.Out;
+
                 RunTask(task);
             }
         }

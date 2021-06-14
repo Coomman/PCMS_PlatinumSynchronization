@@ -57,16 +57,21 @@ namespace Packer
             Console.WriteLine($"use {file.name}");
 
             var source = file.src;
-            const string pattern = @"using [A-Z0-9.]+;\r?\n";
+            const string usingPattern = @"using [A-Z0-9.]+;\r?\n";
+            const string usingStaticPattern = @"using static [A-Z0-9.]+;\r?\n";
 
-            Regex.Matches(source, pattern, RegexOptions.Multiline | RegexOptions.IgnoreCase)
+            Regex.Matches(source, usingPattern, RegexOptions.Multiline | RegexOptions.IgnoreCase)
                 .Select(m => m.Value)
+                .Union(Regex.Matches(source, usingStaticPattern, RegexOptions.Multiline | RegexOptions.IgnoreCase)
+                    .Select(m => m.Value))
                 .ToList()
                 .ForEach(line => _usings.Add(line));
 
-            var sourceWithoutUsings =
-                Regex.Replace(source, pattern, "", RegexOptions.Multiline | RegexOptions.IgnoreCase)
-                    .Trim();
+            var sourceWithoutUsings = Regex.Replace(source, usingPattern, "",
+                RegexOptions.Multiline | RegexOptions.IgnoreCase).Trim();
+
+            sourceWithoutUsings = Regex.Replace(sourceWithoutUsings, usingStaticPattern, "",
+                RegexOptions.Multiline | RegexOptions.IgnoreCase).Trim();
 
             _sb.AppendLine(sourceWithoutUsings).AppendLine();
         }
