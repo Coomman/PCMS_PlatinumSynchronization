@@ -6,7 +6,9 @@ namespace Lab9
     {
         private static void Main()
         {
-            ExecuteConsoleTask<TopologicalSorter>();
+            //ExecuteConsoleTask<TopologicalSorter>();
+            //ExecuteConsoleTask<CycleResearcher>();
+            ExecuteConsoleTask<Bipartite>();
         }
     }
 }

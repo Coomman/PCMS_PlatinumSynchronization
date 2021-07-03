@@ -3,16 +3,17 @@ using System.Collections.Generic;
 
 namespace Lab9
 {
-    public class TopologicalGraph : Graph
+    public class CycleGraph : Graph
     {
         private readonly Stack<int> _route = new Stack<int>();
 
-        public TopologicalGraph(int vertexCount, IReadOnlyList<HashSet<int>> edges)
+        public CycleGraph(int vertexCount, IReadOnlyList<HashSet<int>> edges) 
             : base(vertexCount, edges) { }
 
         public void Dfs(int v)
         {
             _vertexes[v].Color = Color.Gray;
+            _route.Push(v + 1);
 
             foreach (var edgeDist in _vertexes[v])
             {
@@ -22,32 +23,47 @@ namespace Lab9
                 }
                 else if (_vertexes[edgeDist].Color == Color.Gray)
                 {
-                    Console.WriteLine(-1);
+                    ShowCycle(edgeDist + 1);
+
                     Environment.Exit(0);
                 }
             }
 
             _vertexes[v].Color = Color.Black;
-            _route.Push(v + 1);
+            _route.Pop();
         }
 
-        public string GetRoute()
-            => string.Join(" ", _route);
+        private void ShowCycle(int cycleStart)
+        {
+            var cycle = new Stack<int>();
+
+            while (_route.Peek() != cycleStart)
+            {
+                cycle.Push(_route.Pop());
+            }
+            
+            cycle.Push(cycleStart);
+
+            Console.WriteLine("YES");
+            Console.WriteLine(string.Join(" ", cycle));
+        }
     }
 
-    public class TopologicalSorter : GraphTask
+    class CycleResearcher : GraphTask
     {
         public override void Execute()
         {
-            var graph = ReadGraph<TopologicalGraph>();
+            var graph = ReadGraph<CycleGraph>();
 
             for (int i = 0; i < graph.VertexesCount; i++)
             {
                 if (graph[i].NotVisited)
-                    graph.Dfs(i);
+                {
+                    graph.Dfs(i);   
+                }
             }
 
-            WriteLine(graph.GetRoute());
+            WriteLine("NO");
         }
     }
 }
