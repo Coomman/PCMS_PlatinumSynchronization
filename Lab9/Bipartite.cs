@@ -10,7 +10,7 @@ namespace Lab9
 
         public void Dfs(int v, PartColor partColor)
         {
-            _vertexes[v].Color = Color.Gray;
+            _vertexes[v].Color = Color.Black;
             _vertexes[v].PartColor = partColor;
 
             foreach (var edgeDist in _vertexes[v])
@@ -27,8 +27,6 @@ namespace Lab9
                     Environment.Exit(0);
                 }
             }
-
-            _vertexes[v].Color = Color.Black;
         }
     }
 

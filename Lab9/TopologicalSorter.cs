@@ -23,6 +23,7 @@ namespace Lab9
                 else if (_vertexes[edgeDist].Color == Color.Gray)
                 {
                     Console.WriteLine(-1);
+                    
                     Environment.Exit(0);
                 }
             }

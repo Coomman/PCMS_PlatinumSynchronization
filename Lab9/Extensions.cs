@@ -11,10 +11,11 @@ namespace Lab9
 
     public class Vertex : IEnumerable<int>
     {
+        private readonly HashSet<int> _edges;
+        
         public Color Color { get; set; } = Color.White;
         public PartColor PartColor { get; set; }
-        
-        private readonly HashSet<int> _edges;
+        public int LocalIndex { get; set; }
 
         public Vertex(HashSet<int> edges)
         {
@@ -33,29 +34,38 @@ namespace Lab9
         }
     }
 
-    public abstract class Graph
+    public abstract class Graph : IEnumerable<Vertex>
     {
-        protected readonly Vertex[] _vertexes;
+        protected readonly List<Vertex> _vertexes;
 
         public Vertex this[int index] => _vertexes[index];
         
         protected Graph(int vertexCount, IReadOnlyList<HashSet<int>> edges)
         {
-            _vertexes = new Vertex[vertexCount];
+            _vertexes = new List<Vertex>(vertexCount);
 
-            for (int i = 0; i < vertexCount; i++)
-                _vertexes[i] = new Vertex(edges[i]);
+            foreach (var e in edges)
+            {
+                _vertexes.Add(new Vertex(e));
+            }
         }
 
-        public string GetVertexesInfo()
-            => string.Join(" ", _vertexes.Select(v => v.Color));
+        public int VertexesCount => _vertexes.Count;
+        
+        public IEnumerator<Vertex> GetEnumerator()
+        {
+            return _vertexes.GetEnumerator();
+        }
 
-        public int VertexesCount => _vertexes.Length;
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 
     public abstract class GraphTask : ConsoleTask
     {
-        protected T ReadGraph<T>(bool isNotOriented = false) where T : Graph
+        protected T ReadGraph<T>(bool nonOriented = false) where T : Graph
         {
             var numbers = ReadIntArray();
 
@@ -68,9 +78,10 @@ namespace Lab9
             for (int i = 0; i < edgesCount; i++)
             {
                 numbers = ReadIntArray();
+                
                 edges[numbers[0] - 1].Add(numbers[1] - 1);
 
-                if (isNotOriented)
+                if (nonOriented)
                     edges[numbers[1] - 1].Add(numbers[0] - 1);
             }
 

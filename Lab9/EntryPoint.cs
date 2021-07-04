@@ -8,7 +8,9 @@ namespace Lab9
         {
             //ExecuteConsoleTask<TopologicalSorter>();
             //ExecuteConsoleTask<CycleResearcher>();
-            ExecuteConsoleTask<Bipartite>();
+            //ExecuteConsoleTask<Bipartite>();
+            //ExecuteConsoleTask<Condensation>();
+            ExecuteConsoleTask<Hamiltonian>();
         }
     }
 }
