@@ -65,19 +65,14 @@ namespace Lab9
 
     public abstract class GraphTask : ConsoleTask
     {
-        protected T ReadGraph<T>(bool nonOriented = false) where T : Graph
+        protected T ReadGraph<T>(int vertexesCount, int edgesCount, bool nonOriented = false) where T : Graph
         {
-            var numbers = ReadIntArray();
-
-            int vertexesCount = numbers[0];
-            int edgesCount = numbers[1];
-
             var edges = Enumerable.Repeat(0, vertexesCount)
                 .Select(edge => new HashSet<int>()).ToArray();
 
             for (int i = 0; i < edgesCount; i++)
             {
-                numbers = ReadIntArray();
+                var numbers = ReadIntArray();
                 
                 edges[numbers[0] - 1].Add(numbers[1] - 1);
 

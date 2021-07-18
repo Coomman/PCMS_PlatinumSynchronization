@@ -10,7 +10,8 @@ namespace Lab9
             //ExecuteConsoleTask<CycleResearcher>();
             //ExecuteConsoleTask<Bipartite>();
             //ExecuteConsoleTask<Condensation>();
-            ExecuteConsoleTask<Hamiltonian>();
+            //ExecuteConsoleTask<Hamiltonian>();
+            ExecuteConsoleTask<Game>();
         }
     }
 }

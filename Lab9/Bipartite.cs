@@ -34,7 +34,9 @@ namespace Lab9
     {
         public override void Execute()
         {
-            var graph = ReadGraph<BipartiteGraph>(true);
+            var numbers = ReadIntArray();
+            
+            var graph = ReadGraph<BipartiteGraph>(numbers[0], numbers[1], true);
 
             for (int i = 0; i < graph.VertexesCount; i++)
             {

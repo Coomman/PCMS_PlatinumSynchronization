@@ -61,7 +61,9 @@ namespace Lab9
     {
         public override void Execute()
         {
-            var graph = ReadGraph<CondensedGraph>();
+            var numbers = ReadIntArray();
+
+            var graph = ReadGraph<CondensedGraph>(numbers[0], numbers[1]);
             graph.FillInvertedEdges();
 
             for (int i = 0; i < graph.VertexesCount; i++)

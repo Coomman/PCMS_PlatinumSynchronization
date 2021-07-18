@@ -30,7 +30,9 @@ namespace Lab9
     {
         public override void Execute()
         {
-            var graph = ReadGraph<HamiltonianGraph>();
+            var numbers = ReadIntArray();
+            
+            var graph = ReadGraph<HamiltonianGraph>(numbers[0], numbers[1]);
 
             for (int i = 0; i < graph.VertexesCount; i++)
             {
